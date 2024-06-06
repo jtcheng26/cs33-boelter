@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM alpine:latest
 
 ENV USER=host
 ARG ADMIN_PASSWORD

@@ -15,6 +15,16 @@ Make a copy of `.env.example` into `.env.`. Set a value for each:
 - `POSTGRES_*` self explanatory, just pick something
 - `ADMIN_PASSWORD` password needed to login to the host instance. User password is just `desk`
 
+### Sidenote: running in the cloud
+
+If you are running in the cloud, check the network's mtu. On debian, this can be done via `ip a`, and look for "mtu 1460" or similar under your internet-connected network interface, as well as on the docker0 interface. If the docker mtu is larger than the network interface, you must set your docker mtu to the internet mtu by adding this to `/etc/docker/daemon.json`:
+
+```json
+{
+  "mtu": 1400
+}
+```
+
 ### One game
 
 Run `docker compose up`. Players connect to ports 2222 via ssh, and the game host connects to port 2223 and can see the website at port 8080.
