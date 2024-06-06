@@ -1,0 +1,15 @@
+Assume our device has a direct mapped cache consisting of a single 64 byte block that is initially empty. Suppose we are running  a program that accesses the following memory addresses in order:
+
+0x00000000
+0x00000004
+0x00000008
+0x00000010
+0x0000100C
+0x00001008
+0x00001004
+0x00001000
+0x00000FFC
+0x00000FF8
+
+What is our miss rate (in fractional form)?
+

@@ -1,0 +1,246 @@
+Question Number,Title,time (seconds),Text response?,Answer option list or regex,question text (may be multi lined),
+1,Floating comparisons,30,No,"- No, No
+- No, Yes
+- Yes, No
+- Yes, Yes","Assuming all values are 32-bit floating point values,
+
+1. Is +inf *always* equal to +inf?
+2. Is +NaN *always* equal to +NaN?
+
+Hint: when doing floating point equality, the underlying bits are compared for equality.",
+2,"My poor, poor model",30,Yes,ISA,"What is the (in uppercase) 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?",
+3,Registers,20,No,"- rax, rdi, rsi , rsp, rbp
+- rsp, rsi, rdi, rax, rbp
+- rsp, rdi, rsi, rax, rbp
+- rbp, rdi, rsi, rax, rsp
+","In x86 conventions, the stack pointer is in register %___, the first argument is in %___, the 2nd argument is in %___, the return value is in %___, and the base pointer is in %___.",
+4,Many arguments,30,No,"- Having more than 6 arguments is not allowed
+- malloc space for the arguments, and pass this in the rbp register
+- Use the arg syscall in order to pass additional arguments
+- Push them on the stack, pushing the earlier arguments first (e.g. push arg7; push arg8; callq)
+- Push them on the stack, pushing the earlier arguments last (e.g. push arg8; push arg7; callq)","After the 6th argument to a function, how are the rest of a function's arguments passed into the function?",
+5,Expand my stack,20,No,"- Subtract from rsp
+- Add to rsp
+- Call the malloc function
+- Just save data to whatever memory address we want and let the operating system figure it out","In order to allocate more space on the stack, we:",
+6,No Miss (Rate),60,No,"- 5/10
+- 3/10
+- 2/10 
+- 6/10","Assume our device has a direct mapped cache consisting of a single 64 byte block that is initially empty. Suppose we are running  a program that accesses the following memory addresses in order:
+
+0x00000000
+0x00000004
+0x00000008
+0x00000010
+0x0000100C
+0x00001008
+0x00001004
+0x00001000
+0x00000FFC
+0x00000FF8
+
+What is our miss rate (in fractional form)?
+
+",
+7,#####,20,No,"- OpenMP
+- Compiler
+- Preprocessor
+- Linker
+- Assembler","What is the program that when compiling, processes the lines starting with a #, like #pragma omp parallel or #define VAL 5?",
+8,Optimize I,20,No,"- Code Motion
+- Strength Reduction
+- Common Subexpression Elimination
+- Procedure Calls Minimization
+- Memory Aliasing
+- Tiling",What is the name of the optimization that involves using repeated addition inside of a loop instead of multiplication?,
+9,Optimize II,20,No,"- Code Motion
+- Strength Reduction
+- Common Subexpression Elimination
+- Procedure Calls Minimization
+- Memory Aliasing
+- Tiling",What is the name of the opimitzation that replaces repeated array access into the same index with a temporary variable?,
+10,Optimize III,20,No,"- Code Motion
+- Strength Reduction
+- Common Subexpression Elimination
+- Procedure Calls Minimization
+- Memory Aliasing
+- Tiling",What is the name of the optimization that involves splitting a 2D array into smaller squares that are then processed separately in order to optimize cache hits?,
+11,OpenMP,60,No,"- x, j; sum:a
+- _; +:a
+- x; +:a
+- x, j; sum:a
+- x: sum:a","Fill in the blanks with the minimal amount of text while still keeping functionality the exact same even if the pragma line is removed:
+
+int j, x;
+int a = 0;
+
+#pragma omp parallel for private(___) reduction(______)
+for (j = 0; j < 1000000; j++) {
+  for (k = 0; k < 5; k++) {
+    x = calc(j, x);
+    a += x;
+  }
+}
+  ",
+12,Spoons,120,No,"- Yes
+- No, Mutual Exclusion
+- No, Hold and Wait
+- No, No Preemption
+- No, Circular Wait","In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
+- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
+- Each person starts with 1 card.
+- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
+- A discarded card can be drawn by another player
+- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
+- Assume that players will follow the collective strategy listed below, and will not deviate from it under any circumstances
+By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
+
+In this game, is it possible for a deadlock to occur? If not, which condition of deadlock is not satisfied?",
+13,Exceptional Behavior,40,No,"- Abort
+- Interrupt
+- Trap
+- Fault
+- No exception would occur","Suppose a program, program.c, has code which dereferences a null pointer. What kind of exception would arise from running program.c?","Answer: Fault, this would result in a segmentation fault. While it can be argued that this could result in an abort, as it is unrecoverable, it is important to note that the act of pausing hte program to attempt to retrieve the data at the address of the nullptr is a fault in of itself. Thus, a segmentation fault is a fault which leads into an abort."
+14,Exceptional Behavior II,20,No,"- Abort
+- Interrupt
+- Trap
+- Fault
+- No exception would occur","Suppose a solar ray hit our computer while it was running, changing a few bits in memory. Our error correcting memory detected this for us, and stopped the program. What kind of exception is this?",
+15,Caching the VM,30,Yes,TLB,What is the uppercase 3-letter acronym for the item that caches recently accessed entries of the page table?,
+16,Memory I,20,No,"- Stack
+- Heap
+- Text segment
+- Data segment",Which section of memory is referenced when using push or pop?,
+17,Memory II,20,No,"- Stack
+- Heap
+- Text segment
+- Data segment",Which section of memory holds the actual bytecode/assembly and shared libraries?,
+18,Memory III,20,No,"- Stack
+- Heap
+- Text segment
+- Data segment",Which section of memory holds statically allocated data?,
+19,Memory IV,20,No,"- Stack
+- Heap
+- Text segment
+- Data segment",Which section of memory is used for dynamically allocated memory?,
+20,(C|R)ISCy,20,No,"- RISC
+- CISC
+","Which type of architecture is most likely to have an instruction ""decryptAESMsg"" that takes in 2 registers as inputs, holding the decryption key and encrypted data to decrypt?",
+21,C vs R,30,No,"- Instruction encodings are simplified
+- Larger program file size due to more instructions
+- More complex hardware design
+- More power efficient","In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?",
+22,Linking,30,No,"- Static LInking
+- Dynamic Linking
+- Lazy Linking
+- Combined Linking",Which kind of linking constructs a program's object files together at compile time?,
+23,MIPS I,60,Yes,"addiu? $t1, ?$t0, ?100","Whte an equivalent MIPS instruction for: leaq 100(%eax), %edx. Use $t0 for %eax, and $t1 for %edx. Your result should look like `instr $r1, $r2, val` or similar",
+24,No leaq?,60,Yes,22,"What value (in decimal) is stored in %rdi after this x86_64 instruction is run?
+
+Assume %rax = 2, %rbx = 3
+
+leaq 10(%rax, %rbx, 3), %rdi",
+25,Tiled floors,120,Yes,((i\+TSIZE)|(TSIZE\+i));((j\+TSIZE)|(TSIZE\+j)),"This code is missing some text. Fill in the blanks, separating your answers with a semicolon and no spaces (like x*y;i*j):
+
+void tilePrint(int n, int TSIZE, int arr[n][n])
+{
+
+    // Assume n is a multiple of TSIZE
+
+    int i;
+    int j;
+    int x;
+    int y;
+    for (i = 0; i < n; i += TSIZE)
+        for (j = 0; j < n; j += TSIZE)
+            for (x = i; x < ___FIRST BLANK___; x++)
+                for (y = j; y < ___SECOND BLANK___; y++)
+                    printf(""The value at (%d, %d) is %d\n"", x, y, arr[x][y]);
+}",
+26,My code is slow!,40,No,"- Race conditions
+- False sharing
+- Unoptimized load balancing
+- Operating system interference","A student was working on a modified phase 1 of the parallel lab, trying to count the number of black pixels (all channel values are 0). This is their code:
+#pragma omp parallel for shared(count)
+for (int i = 0; i < size; i++)
+  if (arr[i] == 0)
+    #pragma omp critical
+    count += 1;
+
+When running the code, it barely performs better than without the parallelism, even with a large number of threads. Which of the following is most likely the largest contributing reason to the slow performance?",
+27,VM,50,Yes,0x1a5b,"Using the below table, translate 0x604a5b into a physical address, assuming that virtual addresses are 24 bits, physical addresses are 16 bits, and pages are 2KB. Answer in hexadecimal, like 0x1234, and if the memory address is invalid, submit ""invalid"".
+
+| Valid | VPN   | VPO |
+|-------|-------|-----|
+| 1     | 0x604 | 0x1 |
+| 1     | 0xa5b | 0x3 |
+| 1     | 0x5b4 | 0x2 |
+| 0     | 0x604 | 0xf |
+| 0     | 0xfff | 0x5 |
+| 1     | 0x460 | 0x6 |
+| 0     | 0x4a5 | 0x8 |",
+28,Wombo Combo,60,Yes,32;8,"How much space in RAM does this union take up, and what is its byte alignment? Answer with 2 numbers, separated by a semicolon like ""20;4""
+
+struct myStruct
+{
+    short i;
+    char c;
+    union
+    {
+        int one;
+        long two;
+    } u;
+    char s[10];
+};
+",
+29,Wombo Combo II,300,Yes,0x9664088b,"What is the value of a[3].u.one? Use the following memory dump and struct to locate the value. Input your answer in hexadecimal, like 0x1234, and a copy on a google doc can be found at https://tinyurl.com/wombo-combo-gdb . This is using the same struct from the previous question (hint: the struct is 32 bytes large)
+
+struct myStruct
+{
+    short i;
+    char c;
+    union
+    {
+        int one;
+        long two;
+    } u;
+    char s[10];
+};
+
+struct myStruct a[5];
+
+gdb➤  p &a
+$4 = (struct myStruct (*)[5]) 0x7fffffffd620
+gdb➤  x/200bx 0x7fffffffd620
+0x7fffffffd620: 0x49    0xd5    0xd5    0x3a    0xf8    0xfd    0x44    0x99
+0x7fffffffd628: 0x9d    0x3b    0xbe    0x07    0xb3    0xc7    0x08    0xc9
+0x7fffffffd630: 0xf7    0x76    0x2e    0xa6    0x2f    0x50    0xb3    0x4c
+0x7fffffffd638: 0x2a    0x1d    0x09    0xc6    0x39    0xd5    0x56    0xe6
+0x7fffffffd640: 0x5e    0xf5    0xa7    0x71    0x73    0xe9    0x1e    0x43
+0x7fffffffd648: 0x9a    0xba    0x1c    0xc0    0x7f    0x52    0x74    0xff
+0x7fffffffd650: 0xd3    0x86    0x11    0xf9    0xee    0xfb    0x6c    0xf9
+0x7fffffffd658: 0xfd    0xc5    0x50    0x96    0x5c    0xe9    0xcf    0x32
+0x7fffffffd660: 0x82    0x1c    0x24    0xa8    0x47    0xc1    0x6a    0xf3
+0x7fffffffd668: 0x53    0x70    0x42    0x69    0x0c    0x61    0x6d    0x88
+0x7fffffffd670: 0x50    0xf0    0x84    0x9c    0x00    0x8f    0x8f    0xa4
+0x7fffffffd678: 0x61    0xdc    0x06    0xaf    0xd9    0x88    0xb2    0x8e
+0x7fffffffd680: 0xf2    0x68    0x5b    0x38    0xf8    0x53    0x11    0xf4
+0x7fffffffd688: 0x8b    0x08    0x64    0x96    0x68    0xf6    0x02    0xbf
+0x7fffffffd690: 0xb7    0x87    0x9e    0x30    0xbf    0x76    0x49    0xb5
+0x7fffffffd698: 0x3d    0xcf    0x83    0xe4    0x1d    0x27    0x6e    0x81
+0x7fffffffd6a0: 0x09    0x5d    0xcf    0xc1    0x7a    0x7a    0xe2    0xb8
+0x7fffffffd6a8: 0xab    0x2c    0x0f    0xba    0x55    0xc5    0x16    0xdc
+0x7fffffffd6b0: 0x1f    0xea    0xe4    0x37    0x19    0xcc    0xd3    0x6c
+0x7fffffffd6b8: 0xd6    0x5f    0xb3    0x2a    0x16    0x01    0x64    0x16
+0x7fffffffd6c0: 0xa0    0xd7    0xff    0xff    0xff    0x7f    0x00    0x00
+0x7fffffffd6c8: 0x00    0x00    0x00    0x00    0x03    0x00    0x00    0x00
+0x7fffffffd6d0: 0x00    0x06    0x40    0x00    0x00    0x00    0x00    0x00
+0x7fffffffd6d8: 0x85    0x3d    0xa4    0xf7    0xff    0x7f    0x00    0x00
+0x7fffffffd6e0: 0x28    0xfd    0xb8    0xf7    0xff    0x7f    0x00    0x00""",
+30,Link my heart together,900,Yes,31,"You have infiltrated the secret base of SEASnet, and now have access to their secret password generating script! You ran the file, making detailed notes of what was going on using gdb, but right before the password was printed, the power cut off! Can you reconstruct what the program was doing, and get the final return value of the getVal function (in decimal)?
+
+In order to save screen real estate and trees, you've recorded the commands on a google doc, available at https://tinyurl.com/gdb-dump ",
+31,My stock! My float!,300,Yes,-44.5,"Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.
+
+Hint: there are 8 bits for the exponent in a 32-bit floating point number.",
+32,Sailing the special seas,300,Yes,NaN,"Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.",

@@ -1,0 +1,1 @@
+Which section of memory is used for dynamically allocated memory?

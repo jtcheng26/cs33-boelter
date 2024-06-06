@@ -1,0 +1,1 @@
+Suppose a program, program.c, has code which dereferences a null pointer. What kind of exception would arise from running program.c?

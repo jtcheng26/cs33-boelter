@@ -1,0 +1,1 @@
+After the 6th argument to a function, how are the rest of a function's arguments passed into the function?

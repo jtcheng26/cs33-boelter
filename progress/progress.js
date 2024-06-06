@@ -11,6 +11,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: ".env" });
 
 import postgres from "postgres";
+import { time } from "console";
 const sql = postgres({
   host: "db",
   post: 5432,
@@ -68,7 +69,7 @@ function createTitleScreen(
   buttonLabels,
   time = 0,
   istextBox = false,
-  sure = false,
+  sure = false
 ) {
   return new Promise((res, _) => {
     let ans = "";
@@ -384,7 +385,7 @@ async function main() {
     ["Start Game"],
     0,
     false,
-    true,
+    true
   );
 
   while (true) {
@@ -397,7 +398,7 @@ async function main() {
       ["End Round"],
       currentQuestion.time,
       false,
-      true,
+      true
     );
     currentState = WAIT;
     wss.clients.forEach((ws) => ws.send("end question"));
@@ -410,7 +411,7 @@ async function main() {
       ["Start Round", "End Game"],
       0,
       false,
-      true,
+      true
     );
     if (res === "End Game" || currentQNum + 1 >= QUESTIONS.length) {
       wss.clients.forEach((ws) => ws.send("finish final"));
@@ -425,8 +426,13 @@ async function main() {
         "total_points",
       ]);
       console.log(
-        "Game is over - web server still shows leaderboard until quit.",
+        "Game is over - web server still shows leaderboard until quit."
       );
+      console.log(
+        "\n**NOTICE: Showing full user submission data in 10 seconds.**\n"
+      );
+      await timeout(10000);
+      console.table(finalScores);
       wss.close();
       break;
     }

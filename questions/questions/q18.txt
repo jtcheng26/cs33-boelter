@@ -1,0 +1,1 @@
+Which section of memory holds statically allocated data?

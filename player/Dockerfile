@@ -23,6 +23,7 @@ COPY player/ .
 RUN npm i
 COPY .env .
 COPY questions/questions.json .
+COPY questions/questions/* texts/
 COPY wait-stop-ssh.sh .
 RUN chmod +x wait-stop-ssh.sh
 

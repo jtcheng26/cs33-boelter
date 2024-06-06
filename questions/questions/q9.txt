@@ -1,0 +1,1 @@
+What is the name of the opimitzation that replaces repeated array access into the same index with a temporary variable?

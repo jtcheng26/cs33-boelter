@@ -1,0 +1,1 @@
+In x86 conventions, the stack pointer is in register %___, the first argument is in %___, the 2nd argument is in %___, the return value is in %___, and the base pointer is in %___.

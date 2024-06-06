@@ -1,0 +1,1 @@
+What is the program that when compiling, processes the lines starting with a #, like #pragma omp parallel or #define VAL 5?

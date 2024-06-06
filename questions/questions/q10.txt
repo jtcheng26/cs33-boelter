@@ -1,0 +1,1 @@
+What is the name of the optimization that involves splitting a 2D array into smaller squares that are then processed separately in order to optimize cache hits?
