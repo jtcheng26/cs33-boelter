@@ -5,7 +5,7 @@ int a = 0;
 
 #pragma omp parallel for private(___) reduction(______)
 for (j = 0; j < 1000000; j++) {
-  for (k = 0; k < 5; k++) {
+  for (int k = 0; k < 5; k++) {
     x = calc(j, x);
     a += x;
   }
