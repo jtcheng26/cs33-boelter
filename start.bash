@@ -11,9 +11,12 @@ elif [ $# -gt 1 ]; then
     exit 1
 fi
 
+read -p "This will delete EVERYTHING in docker, are you sure you would like to proceed? Control-C to stop "
+
 # Remove everything
 docker stop `docker ps -qa`
 docker rm `docker ps -qa`
+docker volume rm `docker volume ls -q`
 
 # Start networks w/ compose under different project names
 for i in $(seq 1 $n); do
