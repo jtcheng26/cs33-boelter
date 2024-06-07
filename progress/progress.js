@@ -42,9 +42,9 @@ server.get("/", (_, res) => {
 server.get("/progress", (_, res) => {
   const progress = {};
   for (let player in players) {
-    if (players[player].visible) {
-      progress[player] = players[player].score;
-    }
+    //if (players[player].visible) {
+    progress[player] = players[player].score;
+    //}
   }
 
   res.send(progress);

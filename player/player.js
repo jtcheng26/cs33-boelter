@@ -703,7 +703,7 @@ async function main() {
         console.log(
           "\n\n\n\n\n\nTeam token (can be used to reconnect if disconnected):",
           jwt.sign({ k: 0, t: teamName }, SECRETTOKEN),
-          "\n\n\n\n\n\n\n"
+          "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
         );
         break;
       } else {
