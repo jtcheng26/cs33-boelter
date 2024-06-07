@@ -7,14 +7,17 @@ fs.createReadStream("questions.csv")
   .pipe(csv())
   .on("data", function (data) {
     try {
+      console.log(data);
       if (data["Text response?"] === "No") {
         questions.push({
           file: `q${data["Question Number"]}.txt`,
           title: data["Title"],
-          options: data["Answer option list or regex"]
+          options: data["Answer option list or regex (case insensitive)"]
             .split("\n")
             .map((s) => s.substring(2).trim()),
-          correct: 0,
+          correct: Number.parseInt(
+            data["If MCQ, which zero-indexed answer choice is correct?"]
+          ),
           text: false,
           time: Number.parseInt(data["time (seconds)"]),
         });
@@ -22,7 +25,7 @@ fs.createReadStream("questions.csv")
         questions.push({
           file: `q${data["Question Number"]}.txt`,
           title: data["Title"],
-          correct: data["Answer option list or regex"],
+          correct: data["Answer option list or regex (case insensitive)"],
           text: true,
           time: Number.parseInt(data["time (seconds)"]),
         });

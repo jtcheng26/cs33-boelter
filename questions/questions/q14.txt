@@ -1,1 +1,13 @@
-Suppose a solar ray hit our computer while it was running, changing a few bits in memory. Our error correcting memory detected this for us, and stopped the program. What kind of exception is this?
+Fill in the blanks with the minimal amount of text while still keeping functionality the exact same even if the pragma line is removed:
+
+int j, x;
+int a = 0;
+
+#pragma omp parallel for private(___) reduction(______)
+for (j = 0; j < 1000000; j++) {
+  for (k = 0; k < 5; k++) {
+    x = calc(j, x);
+    a += x;
+  }
+}
+  

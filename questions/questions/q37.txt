@@ -1,0 +1,13 @@
+How much space in RAM does this struct take up, and what is its byte alignment? Answer with 2 numbers, separated by a semicolon like "20;4"
+
+struct myStruct
+{
+    short i;
+    char c;
+    union
+    {
+        int one;
+        long two;
+    } u;
+    char s[10];
+};

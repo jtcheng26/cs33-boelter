@@ -1,0 +1,15 @@
+What is the value of a[3].u.one? Use the following memory dump and struct to locate the value. Input your answer in hexadecimal, like 0x1234. This is using the same struct from the previous question (hint: the struct is 32 bytes large). In order to save screen real estate and trees, you've recorded the gdb output on a google doc, available at https://tinyurl.com/wombo-combo-gdb.
+
+struct myStruct
+{
+    short i;
+    char c;
+    union
+    {
+        int one;
+        long two;
+    } u;
+    char s[10];
+};
+
+struct myStruct a[5];

@@ -1,1 +1,17 @@
-Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit "NaN" if the result is not a number, or "inf" for infinity.
+This code is missing some text. Fill in the blanks, separating your answers with a semicolon and no spaces (like x*y;i*j):
+
+void tilePrint(int n, int TSIZE, int arr[n][n])
+{
+
+    // Assume n is a multiple of TSIZE
+
+    int i;
+    int j;
+    int x;
+    int y;
+    for (i = 0; i < n; i += TSIZE)
+        for (j = 0; j < n; j += TSIZE)
+            for (x = i; x < ___FIRST BLANK___; x++)
+                for (y = j; y < ___SECOND BLANK___; y++)
+                    printf("The value at (%d, %d) is %d\n", x, y, arr[x][y]);
+}

@@ -1,1 +1,1 @@
-In x86 conventions, the stack pointer is in register %___, the first argument is in %___, the 2nd argument is in %___, the return value is in %___, and the base pointer is in %___.
+What is the (in uppercase) 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?

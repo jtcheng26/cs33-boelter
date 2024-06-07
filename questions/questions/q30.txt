@@ -1,3 +1,1 @@
-You have infiltrated the secret base of SEASnet, and now have access to their secret password generating script! You ran the file, making detailed notes of what was going on using gdb, but right before the password was printed, the power cut off! Can you reconstruct what the program was doing, and get the final return value of the getVal function (in decimal)?
-
-In order to save screen real estate and trees, you've recorded the commands on a google doc, available at https://tinyurl.com/gdb-dump 
+In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?

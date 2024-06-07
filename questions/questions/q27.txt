@@ -1,11 +1,1 @@
-Using the below table, translate 0x604a5b into a physical address, assuming that virtual addresses are 24 bits, physical addresses are 16 bits, and pages are 2KB. Answer in hexadecimal, like 0x1234, and if the memory address is invalid, submit "invalid".
-
-| Valid | VPN   | VPO |
-|-------|-------|-----|
-| 1     | 0x604 | 0x1 |
-| 1     | 0xa5b | 0x3 |
-| 1     | 0x5b4 | 0x2 |
-| 0     | 0x604 | 0xf |
-| 0     | 0xfff | 0x5 |
-| 1     | 0x460 | 0x6 |
-| 0     | 0x4a5 | 0x8 |
+Which section of memory holds statically allocated data?

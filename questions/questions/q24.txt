@@ -1,5 +1,1 @@
-What value (in decimal) is stored in %rdi after this x86_64 instruction is run?
-
-Assume %rax = 2, %rbx = 3
-
-leaq 10(%rax, %rbx, 3), %rdi
+What is the uppercase 3-letter acronym for the item that caches recently accessed entries of the page table?

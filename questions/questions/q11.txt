@@ -1,13 +1,1 @@
-Fill in the blanks with the minimal amount of text while still keeping functionality the exact same even if the pragma line is removed:
-
-int j, x;
-int a = 0;
-
-#pragma omp parallel for private(___) reduction(______)
-for (j = 0; j < 1000000; j++) {
-  for (k = 0; k < 5; k++) {
-    x = calc(j, x);
-    a += x;
-  }
-}
-  
+What is the name of the optimization that involves using repeated addition inside of a loop instead of multiplication?
