@@ -6,10 +6,8 @@ Question Number,Title,time (seconds),Text response?,Answer option list or regex 
 - Yes, Yes",2,"Assuming all values are 32-bit floating point values,
 
 1. Is +inf *always* equal to +inf?
-2. Is +NaN *always* equal to +NaN?
-
-Hint: when doing floating point equality, the underlying bits are compared for equality."," +inf has a sign bit of 0, all 1 bits for the exponent, and all 0s for the fractional field. As such, 2 positive infs will always have the same bit representation and will always be equal.
-+NaN has a sign bit of 0 or 1 (there is no such thing as positivity vs negativity for NaN), all 1 bits for the exponent, and anything except all 0s for the fractional field, so 2 NaNs could have different bit representations by having different frac values, and not be equal."
+2. Is +NaN *always* equal to +NaN?"," +inf has a sign bit of 0, all 1 bits for the exponent, and all 0s for the fractional field. As such, 2 positive infs will always have the same bit representation and will always be equal.
++NaN has a sign bit of 0 or 1 (there is no such thing as positivity vs negativity for NaN), all 1 bits for the exponent, and anything except all 0s for the fractional field. NaN is standardized to not equal anything, including itself."
 3,"My poor, poor model",40,Yes,ISA,,"What is the 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?",
 4,Registers,40,No,"- rax, rdi, rsi , rsp, rbp
 - rsp, rsi, rdi, rax, rbp
@@ -82,7 +80,7 @@ We have three misses and 7 hits for a 3/10 miss rate"
 - Common Subexpression Elimination
 - Procedure Calls Minimization
 - Memory Aliasing
-- Tiling",4,What is the name of the optimization that replaces repeated array access into the same index with a temporary variable?,
+- Tiling",0,"What is the name of the optimization that replaces repeated array access into the same index inside a for loop with a temporary variable, and saved into the array once outside the loop?",
 13,Optimize III,40,No,"- Code Motion
 - Strength Reduction
 - Common Subexpression Elimination
@@ -185,7 +183,7 @@ QUESTION: Is it possible for the game to deadlock? If not, what condition of dea
 26,Memory II,40,No,"- Stack
 - Heap
 - Text segment
-- Data segment",2,Which section of memory holds the actual bytecode/assembly and shared libraries?,
+- Data segment",2,Which section of memory holds the actual bytecode/assembly?,
 27,Memory III,40,No,"- Stack
 - Heap
 - Text segment
@@ -245,7 +243,7 @@ Hint: the first row of the table corresponds with the 0th page, the second row t
 | 1     | 0x78 |
 | 1     | 0x99 |
 | 0     | 0xaa |","Since pages are 4KB = 2^12 bits, we know that we have 12 bits in the virtual address for the page offset, and the rest is the virtual page number. 12 bits = 3 hex characters (or you can convert to binary), so we keep the last 3 hex characters and use the table to translate the VPN to VPO."
-35,My stock! My float!,300,Yes,-44\.5,,"Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.
+35,My stock! My float!,300,Yes,-44\.5,,"Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnecessary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.
 
 Hint: there are 8 bits for the exponent in a 32-bit floating point number.","In binary this looks like:
 1100 0010 0011 0010 0000 0000 0000 0000
@@ -256,7 +254,7 @@ E  = exp - bias = 132 - 127 = 5
 M = 1 + Frac = 1 + 2^(-2) + 2^(-3) + 2^(-6) = 1.390625
 
 Result = (-1)^s * M * 2^E = -(1.390625 * 32) = -44.5"
-36,Sailing the special seas,300,Yes,NaN,,"Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.","In binary this looks like:
+36,Sailing the special seas,300,Yes,NaN,,"Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnecessary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.","In binary this looks like:
 1111 1111 1111 0000 0000 0000 0000 0001
 
 The important thing to remember is that the exponent field is all 1s and the fractional field is nonzero, making this NaN"
@@ -337,7 +335,7 @@ Partial writeup https://docs.google.com/document/d/1l6O_iAoG8aio8CrGg7bxbA85kLfe
 - MS 4000A + CS 50
 - Moore 100 + Dodd Hall 147
 - CS 24 + CS 76
-- Online",2,"Congradulations on making it this far! One final question, where is the final?",
+- Online",2,"Congratulations on making it this far! One final question, where is the final?",
 43,Final Time,60,No,"- Saturday 8am
 - Sunday 8am
 - Monday 8am

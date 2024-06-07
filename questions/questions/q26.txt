@@ -1,1 +1,1 @@
-Which section of memory holds the actual bytecode/assembly and shared libraries?
+Which section of memory holds the actual bytecode/assembly?

@@ -2,5 +2,3 @@ Assuming all values are 32-bit floating point values,
 
 1. Is +inf *always* equal to +inf?
 2. Is +NaN *always* equal to +NaN?
-
-Hint: when doing floating point equality, the underlying bits are compared for equality.

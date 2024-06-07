@@ -1,1 +1,1 @@
-What is the name of the optimization that replaces repeated array access into the same index with a temporary variable?
+What is the name of the optimization that replaces repeated array access into the same index inside a for loop with a temporary variable, and saved into the array once outside the loop?
