@@ -1,5 +1,5 @@
 Question Number,Title,time (seconds),Text response?,Answer option list or regex (case insensitive),"If MCQ, which zero-indexed answer choice is correct?",question text (may be multi lined),Solution
-1,Warmup,60,Yes,60,,Let's start with a warmup question: convert this hexadecimal value into decimal: 0x3c,
+1,Warmup,60,Yes,60,,Let's start with a warmup question: convert this hexadecimal value into decimal: 0x3c,60. 16*3 + 12 = 48 + 12 = 60
 2,Floating comparisons,40,No,"- No, No
 - No, Yes
 - Yes, No
@@ -8,9 +8,10 @@ Question Number,Title,time (seconds),Text response?,Answer option list or regex 
 1. Is +inf *always* equal to +inf?
 2. Is +NaN *always* equal to +NaN?
 
-Hint: when doing floating point equality, the underlying bits are compared for equality.",
-3,"My poor, poor model",40,Yes,ISA,,"What is the (in uppercase) 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?",
-4,Registers,30,No,"- rax, rdi, rsi , rsp, rbp
+Hint: when doing floating point equality, the underlying bits are compared for equality."," +inf has a sign bit of 0, all 1 bits for the exponent, and all 0s for the fractional field. As such, 2 positive infs will always have the same bit representation and will always be equal.
++NaN has a sign bit of 0 or 1 (there is no such thing as positivity vs negativity for NaN), all 1 bits for the exponent, and anything except all 0s for the fractional field, so 2 NaNs could have different bit representations by having different frac values, and not be equal."
+3,"My poor, poor model",40,Yes,ISA,,"What is the 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?",
+4,Registers,40,No,"- rax, rdi, rsi , rsp, rbp
 - rsp, rsi, rdi, rax, rbp
 - rsp, rdi, rsi, rax, rbp
 - rbp, rdi, rsi, rax, rsp",2,"In x86 conventions, the stack pointer is in register %___, the first argument is in %___, the 2nd argument is in %___, the return value is in %___, and the base pointer is in %___.",
@@ -19,7 +20,7 @@ Hint: when doing floating point equality, the underlying bits are compared for e
 - Use the arg syscall in order to pass additional arguments
 - Push them on the stack, pushing the earlier arguments first (e.g. push arg7; push arg8; callq)
 - Push them on the stack, pushing the earlier arguments last (e.g. push arg8; push arg7; callq)",4,"In x86_64, after the 6th argument to a function, how are the rest of a function's arguments passed into the function?",
-6,Expand my stack,30,No,"- Add to rsp
+6,Expand my stack,40,No,"- Add to rsp
 - Subtract from rsp
 - Call the malloc function
 - Just save data to whatever memory address we want and let the operating system figure it out",1,"In order to allocate more space on the stack, we:",
@@ -41,35 +42,48 @@ Hint: when doing floating point equality, the underlying bits are compared for e
 
 What is our miss rate (in fractional form)?
 
-",
-8,#####,30,No,"- OpenMP
+","The miss rate of this program will be 3/10
+
+0x00000000 // miss, bring in block 0 which ranges from 0x00 to 0x3F (64 bytes)
+0x00000004 // hit (block 0)
+0x00000008 // hit (block 0)
+0x00000010 // hit (block 0)
+0x0000100C // miss, bring in block 64 (floor of 0x100C / block size)
+0x00001008 // hit (block 64)
+0x00001004 // hit (block 64)
+0x00001000 // hit (block 64)
+0x00000FFC // miss (block 63)
+0x00000FF8 // hit (block 63)
+
+We have three misses and 7 hits for a 3/10 miss rate"
+8,#####,40,No,"- OpenMP
 - Compiler
 - Preprocessor
 - Linker
-- Assembler",2,"What is the program that when compiling, processes the lines starting with a #, like #pragma omp parallel or #define VAL 5?",
-9,#####,30,No,"- OpenMP
+- Assembler",2,"What is the program that when compiling, processes the lines starting with a #, like #pragma omp parallel, #define VAL 5, or #include <stdio.h>?",These are preprocessor directives 
+9,#####,40,No,"- OpenMP
 - Compiler
 - Preprocessor
 - Linker
 - Assembler",4,"What is the program that converts text assembly instructions, like movq %rax, %rbx, into bytecode?",
-10,#####,30,No,"- OpenMP
+10,#####,40,No,"- OpenMP
 - Compiler
 - Preprocessor
 - Linker
 - Assembler",3,"What is the program that when compiling, combines multiple separate object files into a single executable file?",
-11,Optimize I,30,No,"- Code Motion
+11,Optimize I,40,No,"- Code Motion
 - Strength Reduction
 - Common Subexpression Elimination
 - Procedure Calls Minimization
 - Memory Aliasing
 - Tiling",1,What is the name of the optimization that involves using repeated addition inside of a loop instead of multiplication?,
-12,Optimize II,30,No,"- Code Motion
+12,Optimize II,40,No,"- Code Motion
 - Strength Reduction
 - Common Subexpression Elimination
 - Procedure Calls Minimization
 - Memory Aliasing
-- Tiling",4,What is the name of the opimitzation that replaces repeated array access into the same index with a temporary variable?,
-13,Optimize III,30,No,"- Code Motion
+- Tiling",4,What is the name of the optimization that replaces repeated array access into the same index with a temporary variable?,
+13,Optimize III,40,No,"- Code Motion
 - Strength Reduction
 - Common Subexpression Elimination
 - Procedure Calls Minimization
@@ -92,159 +106,101 @@ for (j = 0; j < 1000000; j++) {
     a += x;
   }
 }
-  ",
-15,Spoons Intro,180,No,- I have read the game rules (no points will be earned this round),1,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
+  ","Don't need to privatize j (that's handled by the parallel for directive)
+Must privatize x to avoid different threads overwriting each other's versions of x
+We need a reduction on a to allow threads to add to their own private versions of a before combining at the end"
+15,Spoons Intro,180,No,- I have read the game rules (no points will be earned this round),1,"In the next few questions, the (modified) game of spoons will be used. Take a couple minutes to read up on the rules here: https://tinyurl.com/cs33-spoons
 
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
-
-This game will be used in the next few questions - take a couple minutes to read up on the game!",
+When you are done, submit this question - you do not get points for this round.",
 16,Spoons I,60,No,"- Yes
 - No, Mutual Exclusion
 - No, Hold and Wait
 - No, No Preemption
-- No, Circular Wait",0,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
+- No, Circular Wait",0,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
 
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
-
-QUESTION: As-is, is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",
+QUESTION: As-is, is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?","Mutual exclusion is satisfied: Each player holds onto their cards individualls
+Hold and wait is satisfied: Each player holds onto one card and waits to draw another to form a pair.
+No preemption is satisfied: You cannot take a card from a player unless they discard it themselves.
+Circular Wait is satisfied: Consider the scenario where player A is waiting for a card from player B who is waiting for a card from player C"
 17,Spoons II,60,No,"- Yes
 - No, Mutual Exclusion
 - No, Hold and Wait
 - No, No Preemption
-- No, Circular Wait",4,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
-
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
+- No, Circular Wait",4,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
 
 NEW STRATEGY: Label each pair of cards with the same number with a red and black dot on each. A player will immediately discard all of their cards until they receive a card with a red dot, at which point they will hold onto only that card until they find the corresponding card with a black dot.
 
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",
+QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?","Circular wait is not satisfied here. Due to the red/black dotting system, we can ensure that each player is looking for a different card (ie. player A and B cannot both try to find the match for an Ace of Spades)."
 18,Spoons III,60,No,"- Yes
 - No, Mutual Exclusion
 - No, Hold and Wait
 - No, No Preemption
-- No, Circular Wait",3,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
-
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
+- No, Circular Wait",3,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
 
 NEW STRATEGY: All players show their hand to all other players at all times. When a player draws a new card, they also check all other player hands - if either of the held cards are in someone else's hand, they ""steal"" the card from them and immediately win, discarding the remaining card.
 
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",
+QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",Preemption is allowed. Players can steal cards from each other without prompting
 19,Spoons IV,60,No,"- Yes
 - No, Mutual Exclusion
 - No, Hold and Wait
 - No, No Preemption
-- No, Circular Wait",2,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
+- No, Circular Wait",2,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
 
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
+NEW STRATEGY: A player must discard all of their cards every 15-30 seconds and get a new set of cards.
 
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
-
-NEW STRATEGY: A player must discard all of their cards every 30 seconds and get a new set of cards.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",
+QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",No Hold and Wait. discarding cards every 15-30 seconds prevents this condition
 20,Spoons V,60,No,"- Yes
 - No, Mutual Exclusion
 - No, Hold and Wait
 - No, No Preemption
-- No, Circular Wait",2,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
-
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
+- No, Circular Wait",2,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
 
 NEW STRATEGY: When a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they were holding and keep the drawn card.
 
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",
+QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?","No Hold and Wait. By designating that a player must evict the oldest card they are holding, it prevents them from hanging on to the same card indefinitely"
 21,Spoons X,60,No,"- Yes
 - No, Mutual Exclusion
 - No, Hold and Wait
 - No, No Preemption
-- No, Circular Wait",1,"In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
-
-- Turns are unordered and untimed: players take a ""turn"" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player ""wins"", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
+- No, Circular Wait",1,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
 
 NEW STRATEGY: Instead of discarding a card, the player instead rips the card (or whatever is left of the card) in half, keeping half for themselves and discarding the other half. Each piece is considered the same as the full card itself when considering winning.
 
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",
+QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",Mutual exclusion is not satisfied. Multiple players are able to share a resource/card (by ripping it in half)
 22,Exceptional Behavior,40,No,"- Abort
 - Interrupt
 - Trap
 - Fault
-- No exception would occur",3,"Suppose a program, program.c, has code which dereferences a null pointer. What kind of exception would arise from running program.c?","Answer: Fault, this would result in a segmentation fault. While it can be argued that this could result in an abort, as it is unrecoverable, it is important to note that the act of pausing hte program to attempt to retrieve the data at the address of the nullptr is a fault in of itself. Thus, a segmentation fault is a fault which leads into an abort."
-23,Exceptional Behavior II,30,No,"- Abort
+- No exception would occur",3,"Suppose a program, program.c, has code which dereferences a null pointer. What kind of exception would immediately arise from running program.c?","Answer: Fault, this would result in a segmentation fault. While it can be argued that this could result in an abort, as it is unrecoverable, it is important to note that the act of pausing the program to attempt to retrieve the data at the address of the nullptr is a fault in of itself. Thus, a segmentation fault is a fault which leads into an abort if not otherwise handled."
+23,Exceptional Behavior II,40,No,"- Abort
 - Interrupt
 - Trap
 - Fault
 - No exception would occur",0,"Suppose a solar ray hit our computer while it was running, changing a few bits in memory. Our error detecting (but not correcting) memory detected this for us, and stopped the program. What kind of exception is this?","Abort: an error in memory that can't be corrected is unrecoverable, so this would be an abort, assuming the operating system is still able to run"
-24,Caching the VM,40,Yes,TLB,,What is the uppercase 3-letter acronym for the item that caches recently accessed entries of the page table?,
-25,Memory I,30,No,"- Stack
+24,Caching the VM,40,Yes,TLB,,What is the 3-letter acronym for the item that caches recently accessed entries of the page table?,Translation lookaside buffer (TLB) is a memory cache that stores the recent translations of virtual memory to physical memory
+25,Memory I,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",0,Which section of memory is referenced when using push or pop?,
-26,Memory II,30,No,"- Stack
+26,Memory II,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",2,Which section of memory holds the actual bytecode/assembly and shared libraries?,
-27,Memory III,30,No,"- Stack
+27,Memory III,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",3,Which section of memory holds statically allocated data?,
-28,Memory IV,30,No,"- Stack
+28,Memory IV,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",1,Which section of memory is used for dynamically allocated memory?,
-29,(C|R)ISCy,30,No,"- RISC
-- CISC",1,"Which type of architecture is most likely to have an instruction ""decryptAESMsg"" that takes in 2 registers as inputs, holding the decryption key and encrypted data to decrypt?",
+29,(C|R)ISCy,40,No,"- RISC
+- CISC",1,"Which type of architecture is most likely to have an instruction ""decryptAESMsg"" that takes in 2 registers as inputs, holding the decryption key and encrypted data to decrypt?","CISC have more ""complex"" instruction sets, which allows doing complicated operations, like decryption, all in one instruction. RISC on the other hand is less likely to have this instruction, instead depending on the compiler to decrypt using more primitive operations like add/sub/mult/cmp."
 30,C vs R,40,No,"- Instruction encodings are simplified
 - Larger program file size due to more instructions
 - More complex hardware design
-- More power efficient",2,"In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?",
-31,Linking,30,No,"- Static LInking
+- More power efficient",2,"In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?","RISC has more simplified instructions, which means that it often takes more instructions to do the same operation than in CISC. Because of this, they tend to be more power efficient due to their simplicity."
+31,Linking,40,No,"- Static LInking
 - Dynamic Linking
 - Lazy Linking
 - Combined Linking",0,Which kind of linking constructs a program's object files together at compile time?,
@@ -276,7 +232,7 @@ for (int i = 0; i < size; i++)
     #pragma omp critical
     count += 1;
 
-When running the code, it barely performs better than without the parallelism, even with a large number of threads. Which of the following is most likely the largest contributing reason to the slow performance?",
+When running the code, it barely performs better than without the parallelism, even with a large number of threads. Which of the following is most likely the largest contributing reason to the slow performance?","The critical section around count += 1 means that only one thread can update count at a time. Even though the loop is parallelized, the actual increment operation is serialized because it is protected by a critical section."
 34,VM,50,Yes,0x0?78a5b,,"Using the below table, translate 0x003a5b into a physical address, assuming that virtual addresses are 32 bits, physical addresses are 20 bits, and pages are 4KB. Answer in hexadecimal, like 0x1234, and if the memory address is invalid, submit ""invalid"".
 
 Hint: the first row of the table corresponds with the 0th page, the second row the 1st page, etc.
@@ -291,8 +247,19 @@ Hint: the first row of the table corresponds with the 0th page, the second row t
 | 0     | 0xaa |","Since pages are 4KB = 2^12 bits, we know that we have 12 bits in the virtual address for the page offset, and the rest is the virtual page number. 12 bits = 3 hex characters (or you can convert to binary), so we keep the last 3 hex characters and use the table to translate the VPN to VPO."
 35,My stock! My float!,300,Yes,-44\.5,,"Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.
 
-Hint: there are 8 bits for the exponent in a 32-bit floating point number.",
-36,Sailing the special seas,300,Yes,NaN,,"Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.",
+Hint: there are 8 bits for the exponent in a 32-bit floating point number.","In binary this looks like:
+1100 0010 0011 0010 0000 0000 0000 0000
+
+The sign bit is 1, the exponent field is 10000100, and the fractional field is 0110010....0
+The bias is 2^(exp_size - 1) - 1 = 2^(8-1) - 1 = 127
+E  = exp - bias = 132 - 127 = 5
+M = 1 + Frac = 1 + 2^(-2) + 2^(-3) + 2^(-6) = 1.390625
+
+Result = (-1)^s * M * 2^E = -(1.390625 * 32) = -44.5"
+36,Sailing the special seas,300,Yes,NaN,,"Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnessesary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.","In binary this looks like:
+1111 1111 1111 0000 0000 0000 0000 0001
+
+The important thing to remember is that the exponent field is all 1s and the fractional field is nonzero, making this NaN"
 37,Wombo Combo,60,Yes,32;8,,"How much space in RAM does this struct take up, and what is its byte alignment? Answer with 2 numbers, separated by a semicolon like ""20;4""
 
 struct myStruct
@@ -328,13 +295,53 @@ struct myStruct
     char s[10];
 };
 
-struct myStruct a[5];",
-39,MIPS I,120,Yes,"addiu? \$t1, ?\$t0, ?(100|0x64)",,"Write an equivalent MIPS instruction for: leaq 100(%eax), %edx. Use $t0 for %eax, and $t1 for %edx. Your result should look like `instr $r1, $r2, val` or similar",
+struct myStruct a[5];","from the dump, a is located at 0x7fffffffd620
+
+a[3] is located at the fourth struct in a, which is 32*4 bytes past the start of the array at 0x7fffffffd680
+
+the union is located 8 bytes after the start of the a[3] at 0x7fffffffd688
+
+finally, since we are accessing ""one"" this is the int inside the union, which is stored in the first four bytes of the union as 0x8b    0x08    0x64    0x96
+
+since we are using little endian, our final answer reverses the order of the bytes to obtain 0x9664088b"
+39,MIPS,120,Yes,"(addiu? \$t1, ?\$t0, ?(100|0x64))|(la \$t1, ?(100|0x64)\(\$t0\))",,"Write an equivalent MIPS instruction for: leaq 100(%eax), %edx. Use $t0 for %eax, and $t1 for %edx. Your result should look like `instr $r1, $r2, val` or similar",
 40,No leaq?,60,Yes,21,,"What value (in decimal) is stored in %rdi after this x86_64 instruction is run?
 
 Assume %rax = 2, %rbx = 3
 
-leaq 10(%rax, %rbx, 3), %rdi",
-41,Link my heart together,1200,Yes,31,,"You have infiltrated the secret base of SEASnet, and now have access to their secret password generating script! You ran the file, making detailed notes of what was going on using gdb, but right before the password was printed, the power cut off! Can you reconstruct what the program was doing, and get the final return value of the getVal function (in decimal)?
+leaq 10(%rax, %rbx, 3), %rdi",%rax + %rbx * 3 + 10 = 2 + 9 + 10 = 21
+41,Link my heart together,1200,Yes,31|0?x?1f,,"You have infiltrated the secret base of SEASnet, and now have access to their secret password generating script! You ran the file, making detailed notes of what was going on using gdb, but right before the password was printed, the power cut off! Can you reconstruct what the program was doing, and get the final return value of the getVal function (in decimal or hexadecimal)?
 
-In order to save screen real estate and trees, you've recorded the commands on a google doc, available at https://tinyurl.com/gdb-dump ",
+In order to save screen real estate and trees, you've recorded the commands on a google doc, available at https://tinyurl.com/gdb-dump ","code used to generate the assembly (alec):
+
+struct node
+{
+    struct node *prev;
+    int val;
+    struct node *next;
+};
+int getVal(struct node *p, int search)
+{
+    if (p->val > search)
+    {
+        return p->prev->val;
+    }
+    else
+    {
+        return getVal(p->next, search);
+    }
+}
+
+Partial writeup https://docs.google.com/document/d/1l6O_iAoG8aio8CrGg7bxbA85kLfecKfJim9NFS38xvI/edit?usp=sharing "
+42,Final Location,60,No,"- Moore 100 + Rolfe 1200 
+- MS 4000A + CS 50
+- Moore 100 + Dodd Hall 147
+- CS 24 + CS 76
+- Online",2,"Congradulations on making it this far! One final question, where is the final?",
+43,Final Time,60,No,"- Saturday 8am
+- Sunday 8am
+- Monday 8am
+- Tuesday 8am
+- Wednesday 8am
+- Thursday 8am
+- Friday 8am",3,When is the final?,

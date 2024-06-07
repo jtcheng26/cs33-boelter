@@ -1,12 +1,3 @@
-In the game of spoons, a player wins if they are holding 2 cards of the same number, and in each set of cards, there are only 2 cards of each number. There are at least as many card numbers as there are players in the game.
+In the next few questions, the (modified) game of spoons will be used. Take a couple minutes to read up on the rules here: https://tinyurl.com/cs33-spoons
 
-- Turns are unordered and untimed: players take a "turn" whenever they want to, and multiple turns can be taken at once. Assume that players will always take a turn if they are able to, but players may take different amounts of time to take a single turn.
-- Each person starts with 1 card.
-- A turn consists of draining some number of cards, and discarding some number of cards. By default, a player draws 1 card, bringing their hand to 2 cards, and if not winning immediately, discarding one of the 2 cards.
-- A discarded card can be drawn by another player
-- When a player "wins", they immediately stop playing, but other players may continue to play until they win
-- Assume that players will follow a collective strategy, and will not deviate from it under any circumstances
-
-By default, when a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they just drew.
-
-This game will be used in the next few questions - take a couple minutes to read up on the game!
+When you are done, submit this question - you do not get points for this round.

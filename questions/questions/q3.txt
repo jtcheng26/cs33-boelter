@@ -1,1 +1,1 @@
-What is the (in uppercase) 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?
+What is the 3 letter acronym for the model that specifies a specific bytecode's instruction set, registers, data types, memory architecture, etc?

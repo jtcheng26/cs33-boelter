@@ -1,1 +1,1 @@
-What is the program that when compiling, processes the lines starting with a #, like #pragma omp parallel or #define VAL 5?
+What is the program that when compiling, processes the lines starting with a #, like #pragma omp parallel, #define VAL 5, or #include <stdio.h>?
