@@ -2,6 +2,8 @@
 
 A mini pop quiz game for CS 33, originally created by https://github.com/eado for CS 118, updated and modified by https://github.com/burturt
 
+This repo is frozen in time to when the cs33 questions were used. Please use https://github.com/burturt/boelter for the software.
+
 ## Requirements
 
 - Docker
