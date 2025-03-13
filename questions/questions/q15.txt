@@ -1,3 +1,1 @@
-In the next few questions, the (modified) game of spoons will be used. Take a couple minutes to read up on the rules here: https://tinyurl.com/cs33-spoons
-
-When you are done, submit this question - you do not get points for this round.
+Which section of memory is referenced when using push or pop?

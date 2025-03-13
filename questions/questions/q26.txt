@@ -1,1 +1,5 @@
-Which section of memory holds the actual bytecode/assembly?
+What value (in decimal) is stored in %rdi after this x86_64 instruction is run?
+
+Assume %rax = 2, %rbx = 3
+
+leaq 10(%rax, %rbx, 3), %rdi

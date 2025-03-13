@@ -1,3 +1,0 @@
-Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnecessary zeros, like 12.34. You can also submit "NaN" if the result is not a number, or "inf" for infinity.
-
-Hint: there are 8 bits for the exponent in a 32-bit floating point number.

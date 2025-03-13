@@ -22,7 +22,7 @@ Question Number,Title,time (seconds),Text response?,Answer option list or regex 
 - Subtract from rsp
 - Call the malloc function
 - Just save data to whatever memory address we want and let the operating system figure it out",1,"In order to allocate more space on the stack, we:",
-7,No Miss (Rate),60,No,"- 5/10
+7,No Miss (Rate),120,No,"- 5/10
 - 3/10
 - 2/10 
 - 6/10",1,"Assume our device has a direct mapped cache consisting of a single 64 byte block that is initially empty. Suppose we are running  a program that accesses the following memory addresses in order:
@@ -81,13 +81,7 @@ We have three misses and 7 hits for a 3/10 miss rate"
 - Procedure Calls Minimization
 - Memory Aliasing
 - Tiling",0,"What is the name of the optimization that replaces repeated array access into the same index inside a for loop with a temporary variable, and saved into the array once outside the loop?",
-13,Optimize III,40,No,"- Code Motion
-- Strength Reduction
-- Common Subexpression Elimination
-- Procedure Calls Minimization
-- Memory Aliasing
-- Tiling",5,What is the name of the optimization that involves splitting a 2D array into smaller squares that are then processed separately in order to optimize cache hits?,
-14,OpenMP,120,No,"- x, j; sum:a
+13,OpenMP,120,No,"- x, j; sum:a
 - _; +:a
 - _; sum:a
 - x; +:a
@@ -107,119 +101,34 @@ for (j = 0; j < 1000000; j++) {
   ","Don't need to privatize j (that's handled by the parallel for directive)
 Must privatize x to avoid different threads overwriting each other's versions of x
 We need a reduction on a to allow threads to add to their own private versions of a before combining at the end"
-15,Spoons Intro,180,No,- I have read the game rules (no points will be earned this round),1,"In the next few questions, the (modified) game of spoons will be used. Take a couple minutes to read up on the rules here: https://tinyurl.com/cs33-spoons
-
-When you are done, submit this question - you do not get points for this round.",
-16,Spoons I,60,No,"- Yes
-- No, Mutual Exclusion
-- No, Hold and Wait
-- No, No Preemption
-- No, Circular Wait",0,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-QUESTION: As-is, is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?","Mutual exclusion is satisfied: Each player holds onto their cards individualls
-Hold and wait is satisfied: Each player holds onto one card and waits to draw another to form a pair.
-No preemption is satisfied: You cannot take a card from a player unless they discard it themselves.
-Circular Wait is satisfied: Consider the scenario where player A is waiting for a card from player B who is waiting for a card from player C"
-17,Spoons II,60,No,"- Yes
-- No, Mutual Exclusion
-- No, Hold and Wait
-- No, No Preemption
-- No, Circular Wait",4,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: Label each pair of cards with the same number with a red and black dot on each. A player will immediately discard all of their cards until they receive a card with a red dot, at which point they will hold onto only that card until they find the corresponding card with a black dot.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?","Circular wait is not satisfied here. Due to the red/black dotting system, we can ensure that each player is looking for a different card (ie. player A and B cannot both try to find the match for an Ace of Spades)."
-18,Spoons III,60,No,"- Yes
-- No, Mutual Exclusion
-- No, Hold and Wait
-- No, No Preemption
-- No, Circular Wait",3,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: All players show their hand to all other players at all times. When a player draws a new card, they also check all other player hands - if either of the held cards are in someone else's hand, they ""steal"" the card from them and immediately win, discarding the remaining card.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",Preemption is allowed. Players can steal cards from each other without prompting
-19,Spoons IV,60,No,"- Yes
-- No, Mutual Exclusion
-- No, Hold and Wait
-- No, No Preemption
-- No, Circular Wait",2,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: A player must discard all of their cards every 15-30 seconds and get a new set of cards.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",No Hold and Wait. discarding cards every 15-30 seconds prevents this condition
-20,Spoons V,60,No,"- Yes
-- No, Mutual Exclusion
-- No, Hold and Wait
-- No, No Preemption
-- No, Circular Wait",2,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: When a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they were holding and keep the drawn card.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?","No Hold and Wait. By designating that a player must evict the oldest card they are holding, it prevents them from hanging on to the same card indefinitely"
-21,Spoons X,60,No,"- Yes
-- No, Mutual Exclusion
-- No, Hold and Wait
-- No, No Preemption
-- No, Circular Wait",1,"The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: Instead of discarding a card, the player instead rips the card (or whatever is left of the card) in half, keeping half for themselves and discarding the other half. Each piece is considered the same as the full card itself when considering winning.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?",Mutual exclusion is not satisfied. Multiple players are able to share a resource/card (by ripping it in half)
-22,Exceptional Behavior,40,No,"- Abort
-- Interrupt
-- Trap
-- Fault
-- No exception would occur",3,"Suppose a program, program.c, has code which dereferences a null pointer. What kind of exception would immediately arise from running program.c?","Answer: Fault, this would result in a segmentation fault. While it can be argued that this could result in an abort, as it is unrecoverable, it is important to note that the act of pausing the program to attempt to retrieve the data at the address of the nullptr is a fault in of itself. Thus, a segmentation fault is a fault which leads into an abort if not otherwise handled."
-23,Exceptional Behavior II,40,No,"- Abort
-- Interrupt
-- Trap
-- Fault
-- No exception would occur",0,"Suppose a solar ray hit our computer while it was running, changing a few bits in memory. Our error detecting (but not correcting) memory detected this for us, and stopped the program. What kind of exception is this?","Abort: an error in memory that can't be corrected is unrecoverable, so this would be an abort, assuming the operating system is still able to run"
-24,Caching the VM,40,Yes,TLB,,What is the 3-letter acronym for the item that caches recently accessed entries of the page table?,Translation lookaside buffer (TLB) is a memory cache that stores the recent translations of virtual memory to physical memory
-25,Memory I,40,No,"- Stack
+14,Caching the VM,40,Yes,TLB,,What is the 3-letter acronym for the item that caches recently accessed entries of the page table?,Translation lookaside buffer (TLB) is a memory cache that stores the recent translations of virtual memory to physical memory
+15,Memory I,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",0,Which section of memory is referenced when using push or pop?,
-26,Memory II,40,No,"- Stack
+16,Memory II,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",2,Which section of memory holds the actual bytecode/assembly?,
-27,Memory III,40,No,"- Stack
+17,Memory III,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",3,Which section of memory holds statically allocated data?,
-28,Memory IV,40,No,"- Stack
+18,Memory IV,40,No,"- Stack
 - Heap
 - Text segment
 - Data segment",1,Which section of memory is used for dynamically allocated memory?,
-29,(C|R)ISCy,40,No,"- RISC
+19,(C|R)ISCy,40,No,"- RISC
 - CISC",1,"Which type of architecture is most likely to have an instruction ""decryptAESMsg"" that takes in 2 registers as inputs, holding the decryption key and encrypted data to decrypt?","CISC have more ""complex"" instruction sets, which allows doing complicated operations, like decryption, all in one instruction. RISC on the other hand is less likely to have this instruction, instead depending on the compiler to decrypt using more primitive operations like add/sub/mult/cmp."
-30,C vs R,40,No,"- Instruction encodings are simplified
+20,C vs R,40,No,"- Instruction encodings are simplified
 - Larger program file size due to more instructions
 - More complex hardware design
 - More power efficient",2,"In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?","RISC has more simplified instructions, which means that it often takes more instructions to do the same operation than in CISC. Because of this, they tend to be more power efficient due to their simplicity."
-31,Linking,40,No,"- Static LInking
+21,Linking,40,No,"- Static LInking
 - Dynamic Linking
 - Lazy Linking
 - Combined Linking",0,Which kind of linking constructs a program's object files together at compile time?,
-32,Tiled floors,120,Yes,((i\+TSIZE)|(TSIZE\+i));((j\+TSIZE)|(TSIZE\+j)),,"This code is missing some text. Fill in the blanks, separating your answers with a semicolon and no spaces (like x*y;i*j):
-
-void tilePrint(int n, int TSIZE, int arr[n][n])
-{
-
-    // Assume n is a multiple of TSIZE
-
-    int i;
-    int j;
-    int x;
-    int y;
-    for (i = 0; i < n; i += TSIZE)
-        for (j = 0; j < n; j += TSIZE)
-            for (x = i; x < ___FIRST BLANK___; x++)
-                for (y = j; y < ___SECOND BLANK___; y++)
-                    printf(""The value at (%d, %d) is %d\n"", x, y, arr[x][y]);
-}",
-33,My code is slow!,40,No,"- Race conditions
+22,My code is slow!,40,No,"- Race conditions
 - False sharing
 - Serialized threads
 - Unoptimized load balancing
@@ -231,7 +140,7 @@ for (int i = 0; i < size; i++)
     count += 1;
 
 When running the code, it barely performs better than without the parallelism, even with a large number of threads. Which of the following is most likely the largest contributing reason to the slow performance?","The critical section around count += 1 means that only one thread can update count at a time. Even though the loop is parallelized, the actual increment operation is serialized because it is protected by a critical section."
-34,VM,50,Yes,0x0?78a5b,,"Using the below table, translate 0x003a5b into a physical address, assuming that virtual addresses are 32 bits, physical addresses are 20 bits, and pages are 4KB. Answer in hexadecimal, like 0x1234, and if the memory address is invalid, submit ""invalid"".
+23,VM,120,Yes,0x0?78a5b,,"Using the below table, translate 0x003a5b into a physical address, assuming that virtual addresses are 32 bits, physical addresses are 20 bits, and pages are 4KB. Answer in hexadecimal, like 0x1234, and if the memory address is invalid, submit ""invalid"".
 
 Hint: the first row of the table corresponds with the 0th page, the second row the 1st page, etc.
 
@@ -243,7 +152,7 @@ Hint: the first row of the table corresponds with the 0th page, the second row t
 | 1     | 0x78 |
 | 1     | 0x99 |
 | 0     | 0xaa |","Since pages are 4KB = 2^12 bits, we know that we have 12 bits in the virtual address for the page offset, and the rest is the virtual page number. 12 bits = 3 hex characters (or you can convert to binary), so we keep the last 3 hex characters and use the table to translate the VPN to VPO."
-35,My stock! My float!,300,Yes,-44\.5,,"Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnecessary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.
+24,My stock! My float!,300,Yes,-44\.5,,"Using the 32-bit float floating point number standard, convert 0xC2320000 into a decimal. When answering, leave off unnecessary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.
 
 Hint: there are 8 bits for the exponent in a 32-bit floating point number.","In binary this looks like:
 1100 0010 0011 0010 0000 0000 0000 0000
@@ -254,61 +163,13 @@ E  = exp - bias = 132 - 127 = 5
 M = 1 + Frac = 1 + 2^(-2) + 2^(-3) + 2^(-6) = 1.390625
 
 Result = (-1)^s * M * 2^E = -(1.390625 * 32) = -44.5"
-36,Sailing the special seas,300,Yes,NaN,,"Using the 32-bit float floating point number standard, convert 0xFFF00001 into a decimal. When answering, leave off unnecessary zeros, like 12.34. You can also submit ""NaN"" if the result is not a number, or ""inf"" for infinity.","In binary this looks like:
-1111 1111 1111 0000 0000 0000 0000 0001
-
-The important thing to remember is that the exponent field is all 1s and the fractional field is nonzero, making this NaN"
-37,Wombo Combo,60,Yes,32;8,,"How much space in RAM does this struct take up, and what is its byte alignment? Answer with 2 numbers, separated by a semicolon like ""20;4""
-
-struct myStruct
-{
-    short i;
-    char c;
-    union
-    {
-        int one;
-        long two;
-    } u;
-    char s[10];
-};
-","Overall storage using the characters of each item as one byte:
-
-iic_____
-uuuuuuuu
-ssssssss
-ss______
-
-The largest required alignment primitive in the struct is the long inside the union, therefore, the overall required alignment is 8."
-38,Wombo Combo II,300,Yes,0x9664088b,,"What is the value of a[3].u.one? Use the following memory dump and struct to locate the value. Input your answer in hexadecimal, like 0x1234. This is using the same struct from the previous question (hint: the struct is 32 bytes large). In order to save screen real estate and trees, you've recorded the gdb output on a google doc, available at https://tinyurl.com/wombo-combo-gdb.
-
-struct myStruct
-{
-    short i;
-    char c;
-    union
-    {
-        int one;
-        long two;
-    } u;
-    char s[10];
-};
-
-struct myStruct a[5];","from the dump, a is located at 0x7fffffffd620
-
-a[3] is located at the fourth struct in a, which is 32*4 bytes past the start of the array at 0x7fffffffd680
-
-the union is located 8 bytes after the start of the a[3] at 0x7fffffffd688
-
-finally, since we are accessing ""one"" this is the int inside the union, which is stored in the first four bytes of the union as 0x8b    0x08    0x64    0x96
-
-since we are using little endian, our final answer reverses the order of the bytes to obtain 0x9664088b"
-39,MIPS,120,Yes,"(addiu? \$t1, ?\$t0, ?(100|0x64))|(la \$t1, ?(100|0x64)\(\$t0\))",,"Write an equivalent MIPS instruction for: leaq 100(%eax), %edx. Use $t0 for %eax, and $t1 for %edx. Your result should look like `instr $r1, $r2, val` or similar",
-40,No leaq?,60,Yes,21,,"What value (in decimal) is stored in %rdi after this x86_64 instruction is run?
+25,MIPS,120,Yes,"(addiu? \$t1, ?\$t0, ?(100|0x64))|(la \$t1, ?(100|0x64)\(\$t0\))",,"Write an equivalent MIPS instruction for: leaq 100(%eax), %edx. Use $t0 for %eax, and $t1 for %edx. Your result should look like `instr $r1, $r2, val` or similar",
+26,No leaq?,60,Yes,21,,"What value (in decimal) is stored in %rdi after this x86_64 instruction is run?
 
 Assume %rax = 2, %rbx = 3
 
 leaq 10(%rax, %rbx, 3), %rdi",%rax + %rbx * 3 + 10 = 2 + 9 + 10 = 21
-41,Link my heart together,1200,Yes,31|0?x?1f,,"You have infiltrated the secret base of SEASnet, and now have access to their secret password generating script! You ran the file, making detailed notes of what was going on using gdb, but right before the password was printed, the power cut off! Can you reconstruct what the program was doing, and get the final return value of the getVal function (in decimal or hexadecimal)?
+27,Link my heart together,1200,Yes,31|0?x?1f,,"You have infiltrated the secret base of SEASnet, and now have access to their secret password generating script! You ran the file, making detailed notes of what was going on using gdb, but right before the password was printed, the power cut off! Can you reconstruct what the program was doing, and get the final return value of the getVal function (in decimal or hexadecimal)?
 
 In order to save screen real estate and trees, you've recorded the commands on a google doc, available at https://tinyurl.com/gdb-dump ","code used to generate the assembly (alec):
 
@@ -331,15 +192,21 @@ int getVal(struct node *p, int search)
 }
 
 Partial writeup https://docs.google.com/document/d/1l6O_iAoG8aio8CrGg7bxbA85kLfecKfJim9NFS38xvI/edit?usp=sharing "
-42,Final Location,60,No,"- Moore 100 + Rolfe 1200 
-- MS 4000A + CS 50
-- Moore 100 + Dodd Hall 147
-- CS 24 + CS 76
+28,Final Location,30,No,"- Moore 100
+- CS 50
+- Dodd Hall 147
+- CS 24
 - Online",2,"Congratulations on making it this far! One final question, where is the final?",
-43,Final Time,60,No,"- Saturday 8am
+29,Final Time,30,No,"- Saturday 8am
 - Sunday 8am
 - Monday 8am
 - Tuesday 8am
 - Wednesday 8am
 - Thursday 8am
-- Friday 8am",3,When is the final?,
+- Friday 8am",4,When is the final?,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,Total time (min):,47.66666667,,,,,

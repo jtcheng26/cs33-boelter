@@ -1,1 +1,0 @@
-Which kind of linking constructs a program's object files together at compile time?

@@ -1,5 +1,1 @@
-The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: All players show their hand to all other players at all times. When a player draws a new card, they also check all other player hands - if either of the held cards are in someone else's hand, they "steal" the card from them and immediately win, discarding the remaining card.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?
+Which section of memory is used for dynamically allocated memory?

@@ -1,1 +1,0 @@
-Write an equivalent MIPS instruction for: leaq 100(%eax), %edx. Use $t0 for %eax, and $t1 for %edx. Your result should look like `instr $r1, $r2, val` or similar

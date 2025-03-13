@@ -1,1 +1,0 @@
-In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?

@@ -1,5 +1,1 @@
-The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: A player must discard all of their cards every 15-30 seconds and get a new set of cards.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?
+Which type of architecture is most likely to have an instruction "decryptAESMsg" that takes in 2 registers as inputs, holding the decryption key and encrypted data to decrypt?

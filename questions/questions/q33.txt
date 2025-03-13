@@ -1,8 +1,0 @@
-A student was working on a modified phase 1 of the parallel lab, trying to count the number of black pixels (all channel values are 0). This is their code:
-#pragma omp parallel for shared(count)
-for (int i = 0; i < size; i++)
-  if (arr[i] == 0)
-    #pragma omp critical
-    count += 1;
-
-When running the code, it barely performs better than without the parallelism, even with a large number of threads. Which of the following is most likely the largest contributing reason to the slow performance?

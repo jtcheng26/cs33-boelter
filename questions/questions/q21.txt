@@ -1,5 +1,1 @@
-The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: Instead of discarding a card, the player instead rips the card (or whatever is left of the card) in half, keeping half for themselves and discarding the other half. Each piece is considered the same as the full card itself when considering winning.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?
+Which kind of linking constructs a program's object files together at compile time?

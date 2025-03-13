@@ -1,5 +1,1 @@
-The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: When a player draws a new card, they compare it to their existing card, and if it doesn't match, discard the card they were holding and keep the drawn card.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?
+In general (feel free to think x86 vs MIPS), which of the following is NOT a result of using RISC over CISC?

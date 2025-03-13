@@ -1,5 +1,1 @@
-The rules of spoons are available at https://tinyurl.com/cs33-spoons.
-
-NEW STRATEGY: Label each pair of cards with the same number with a red and black dot on each. A player will immediately discard all of their cards until they receive a card with a red dot, at which point they will hold onto only that card until they find the corresponding card with a black dot.
-
-QUESTION: Is it possible for the game to deadlock? If not, what condition of deadlock is not satisfied?
+Which section of memory holds statically allocated data?
